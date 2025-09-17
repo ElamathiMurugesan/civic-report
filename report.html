@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Report an Issue – CivicReport</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?display=swap&family=Inter:wght@400;500;700;900&family=Noto+Sans:wght@400;500;700;900" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+:root { --primary-color: #137fec; }
+body { font-family: Inter, "Noto Sans", sans-serif; }
+</style>
+</head>
+
+<body class="bg-gray-50">
+<header class="flex justify-between items-center p-5 bg-white shadow">
+  <h1 class="text-2xl font-bold text-teal-700 tracking-wide">CivicReport</h1>
+  <div class="text-gray-600">Abinaya i | abiioff565@gmail.com 👤</div>
+</header>
+
+<main class="bg-white max-w-2xl mx-auto p-8">
+  <h2 class="text-3xl font-bold text-gray-900">Report an Issue</h2>
+  <p class="mt-2 text-gray-600">Fill out the form below to submit a new issue report.</p>
+
+  <form id="reportForm" class="mt-8 space-y-6">
+    <div>
+      <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
+      <input id="title" name="title" type="text" required
+        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[var(--primary-color)] focus:ring-[var(--primary-color)] sm:text-sm"
+        placeholder="e.g., Pothole on Main Street">
+    </div>
+
+    <div>
+      <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+      <textarea id="description" name="description" rows="4" required
+        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[var(--primary-color)] focus:ring-[var(--primary-color)] sm:text-sm"
+        placeholder="Please provide as much detail as possible."></textarea>
+    </div>
+
+    <div>
+      <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
+      <select id="category" name="category" required
+        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[var(--primary-color)] focus:ring-[var(--primary-color)] sm:text-sm">
+        <option value="">Select a category</option>
+        <option>Road Damage</option>
+        <option>Streetlight Outage</option>
+        <option>Public Vandalism</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="location" class="block text-sm font-medium text-gray-700">Location</label>
+      <input id="location" name="location" type="text" required
+        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[var(--primary-color)] focus:ring-[var(--primary-color)] sm:text-sm"
+        placeholder="e.g., Near 123 Main St, Anytown">
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Photo</label>
+      <input id="photo" name="photo" type="file"
+        class="mt-2 block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4
+               file:rounded-md file:border-0 file:text-sm file:font-semibold
+               file:bg-[var(--primary-color)] file:text-white hover:file:bg-blue-600">
+    </div>
+
+    <button type="submit"
+      class="flex w-full justify-center rounded-md bg-[var(--primary-color)] py-3 px-4 text-base font-medium text-white shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary-color)]">
+      Submit Report
+    </button>
+  </form>
+</main>
+
+<script>
+document.getElementById('reportForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+  const fd = new FormData(this);
+  const report = {};
+  fd.forEach((v, k) => report[k] = v);
+  report.id = Date.now();
+  report.date = new Date().toLocaleString();
+  report.status = "pending";
+  report.userEmail = "abiioff565@gmail.com"; // Set to current user
+
+  const reports = JSON.parse(localStorage.getItem('reports') || '[]');
+  reports.push(report);
+  localStorage.setItem('reports', JSON.stringify(reports));
+  if (typeof awardPointsOnReport === 'function') {
+    awardPointsOnReport(report.userEmail);
+  }
+  alert("✅ Report submitted!");
+  window.location.href = "myreport.html";
+});
+</script>
+</body>
+</html>

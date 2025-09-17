@@ -1,0 +1,131 @@
+/* General */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0f2027;
+  background: linear-gradient(120deg, #1a2a3a, #0f2027);
+  color: #fff;
+}
+
+/* Login Page */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.login-box {
+  background: #1e2d3b;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  width: 300px;
+}
+.login-box h1 { margin: 10px 0; }
+.login-box p { font-size: 14px; color: #aaa; }
+.login-box input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 5px;
+}
+button {
+  width: 100%;
+  padding: 10px;
+  background: #10b981;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:hover { background: #059669; }
+.signup { margin-top: 10px; font-size: 13px; }
+
+/* Topbar */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  background: #1e2d3b;
+  padding: 10px 20px;
+}
+.user-info {
+  text-align: right;
+  font-size: 13px;
+  color: #ccc;
+}
+
+/* Dashboard */
+.dashboard h1 { margin: 20px; }
+.cards {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px;
+}
+.card {
+  background: #1e2d3b;
+  padding: 20px;
+  border-radius: 8px;
+  width: 22%;
+  text-align: center;
+}
+.sections {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px;
+}
+.section {
+  background: #1e2d3b;
+  padding: 20px;
+  border-radius: 8px;
+  width: 45%;
+}
+.map {
+  background: #2a3c4e;
+  padding: 40px;
+  text-align: center;
+  border-radius: 8px;
+  color: #aaa;
+}
+
+/* Report Form */
+.report-form {
+  margin: 20px;
+  background: #1e2d3b;
+  padding: 20px;
+  border-radius: 8px;
+}
+.report-form form {
+  display: flex;
+  flex-direction: column;
+}
+.report-form label {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+.report-form input, .report-form select, .report-form textarea {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 10px;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  background: #1e2d3b;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.navbar a {
+  color: #aaa;
+  text-decoration: none;
+}
+.navbar a.active {
+  color: #10b981;
+  font-weight: bold;
+}

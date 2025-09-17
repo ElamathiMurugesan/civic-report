@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Total Reports – CivicReport</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+
+<style>
+:root { --primary-color: #137fec; }
+body { font-family: 'Inter', sans-serif; }
+.report-card img {
+  max-width: 120px;
+  max-height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-top: 8px;
+}
+</style>
+</head>
+
+<body class="bg-gray-50">
+<header class="flex justify-between items-center px-8 py-4 bg-white shadow">
+  <h1 class="text-2xl font-bold text-[#2e7d6b] tracking-wide">CivicReport</h1>
+  <div class="text-gray-600 text-sm">
+    <span>Abinaya I</span> | <span>abiioff565@gmail.com</span> <span class="material-symbols-outlined align-middle">account_circle</span>
+  </div>
+</header>
+
+<main class="max-w-5xl mx-auto px-6 py-10">
+  <h2 class="text-3xl font-bold text-gray-900 mb-2">Total Reports</h2>
+  <p id="totalCount" class="text-gray-600 mb-8">Loading reports…</p>
+
+  <div id="totalReportsList" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <!-- JS will inject report cards -->
+  </div>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const list = document.getElementById('totalReportsList');
+  const count = document.getElementById('totalCount');
+  const allReports = JSON.parse(localStorage.getItem('reports')) || [];
+
+  count.textContent = `Total Reports Submitted: ${allReports.length}`;
+
+  if (allReports.length === 0) {
+    list.innerHTML = '<p class="text-gray-700">No reports have been submitted yet.</p>';
+    return;
+  }
+
+  allReports.forEach(r => {
+    const card = document.createElement('div');
+    card.className = 'report-card bg-white rounded-xl shadow p-5 border border-gray-200';
+    card.innerHTML = `
+      <h3 class="text-xl font-semibold text-[var(--primary-color)] mb-2">${r.category || 'Uncategorized'}</h3>
+      <p class="text-gray-800 mb-2">${r.description || 'No description provided.'}</p>
+      <p class="text-sm text-gray-600"><strong>Status:</strong> ${r.status || 'Pending'}</p>
+      <p class="text-sm text-gray-600"><strong>Location:</strong> 
+        ${r.lat && r.lon ? `${r.lat.toFixed(4)}, ${r.lon.toFixed(4)}` : (r.location || 'Not specified')}
+      </p>
+      <p class="text-xs text-gray-500 mt-1">Submitted: ${r.createdAt || r.date}</p>
+      ${r.photo ? `<img src="${r.photo}" alt="Report photo">` : ''}
+    `;
+    list.appendChild(card);
+  });
+});
+</script>
+</body>
+</html>

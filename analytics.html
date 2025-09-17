@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Report Center Analytics</title>
+  <link rel="stylesheet" href="admindashboard.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link rel="stylesheet" href="notification.html">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <style type="text/tailwindcss">
+    :root {
+      --primary-color: #137fec;
+      --primary-hover-color: #0b69c4;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-gray-900" style='font-family: Inter, "Noto Sans", sans-serif;'>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="profile">
+        <div class="avatar">RC</div>
+        <div>
+          <h1 class="title">Report Center</h1>
+          <p class="subtitle">Admin</p>
+        </div>
+      </div>
+      <nav class="menu">
+        <a href="admindashboard.html" class="menu-item">Dashboard</a>
+        <a href="analytics.html" class="menu-item active">Report Analytics</a>
+        <a href="notification.html" class="menu-item">Notifications</a>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <h2 class="heading text-3xl font-bold text-gray-900 mb-6">Analytics</h2>
+
+      <section class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <div class="lg:col-span-2 bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+          <h2 class="text-lg font-semibold text-gray-900 mb-4">Issues by Category</h2>
+          <div class="h-80">
+            <div class="grid h-full grid-flow-col gap-6 grid-rows-[1fr_auto] items-end justify-items-center px-3">
+              <div class="w-full rounded-t-md bg-[var(--primary-color)]/20 hover:bg-[var(--primary-color)]/40 transition-colors"
+                style="height: 40%;"><span class="sr-only">40</span></div>
+              <p class="text-sm font-medium text-gray-600">Potholes</p>
+              <div class="w-full rounded-t-md bg-[var(--primary-color)]/20 hover:bg-[var(--primary-color)]/40 transition-colors"
+                style="height: 70%;"><span class="sr-only">70</span></div>
+              <p class="text-sm font-medium text-gray-600">Streetlights</p>
+              <div class="w-full rounded-t-md bg-[var(--primary-color)]/20 hover:bg-[var(--primary-color)]/40 transition-colors"
+                style="height: 20%;"><span class="sr-only">20</span></div>
+              <p class="text-sm font-medium text-gray-600">Garbage</p>
+              <div class="w-full rounded-t-md bg-[var(--primary-color)]/20 hover:bg-[var(--primary-color)]/40 transition-colors"
+                style="height: 70%;"><span class="sr-only">70</span></div>
+              <p class="text-sm font-medium text-gray-600">Traffic</p>
+              <div class="w-full rounded-t-md bg-[var(--primary-color)]/20 hover:bg-[var(--primary-color)]/40 transition-colors"
+                style="height: 30%;"><span class="sr-only">30</span></div>
+              <p class="text-sm font-medium text-gray-600">Water Leaks</p>
+              <div class="w-full rounded-t-md bg-[var(--primary-color)]/20 hover:bg-[var(--primary-color)]/40 transition-colors"
+                style="height: 100%;"><span class="sr-only">100</span></div>
+              <p class="text-sm font-medium text-gray-600">Graffiti</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+          <h2 class="text-lg font-semibold text-gray-900 mb-4">Issue Status Distribution</h2>
+          <div class="flex items-center justify-center h-80">
+            <div class="relative size-56">
+              <svg class="size-full" viewBox="0 0 36 36">
+                <path class="stroke-current text-yellow-500"
+                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                  fill="none" stroke-dasharray="40, 100" stroke-width="3"></path>
+                <path class="stroke-current text-blue-500"
+                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                  fill="none" stroke-dasharray="35, 100" stroke-dashoffset="-40" stroke-width="3"></path>
+                <path class="stroke-current text-green-500"
+                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                  fill="none" stroke-dasharray="25, 100" stroke-dashoffset="-75" stroke-width="3"></path>
+              </svg>
+              <div class="absolute inset-0 flex flex-col items-center justify-center">
+                <span class="text-3xl font-bold">235</span>
+                <span class="text-sm text-gray-500">Total Issues</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 flex justify-center gap-4 text-sm">
+            <div class="flex items-center gap-2">
+              <span class="size-3 rounded-full bg-yellow-500"></span>
+              <span>Pending</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="size-3 rounded-full bg-blue-500"></span>
+              <span>In Progress</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="size-3 rounded-full bg-green-500"></span>
+              <span>Resolved</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm mt-8">
+        <h2 class="text-lg font-semibold text-gray-900 mb-4">Issue Locations Heatmap</h2>
+        <div class="w-full aspect-[2/1] bg-center bg-no-repeat bg-cover rounded-lg object-cover"
+          style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBXz2fXNorda2gOv9CDlaMzRUNYFTj3amHprPx1VK1dUU_Byb3ltng5mKYyh_R8IquYmec-31FpO02grN0jbUSkgMLHpsdsCV5ar6T6SyII5V0f0w60AbD5uvHHJRzESlV-GJltk-BQ5DMa155N9jDeCbw0LXQFKib8NOP7YQ2T1LbOOLxUvMiJM6H5WLENJAQwjZpreR8t5fwjQicRuno8p3G9f1cgKjUNzUcz8Y1B2gWqKLJoPOgdzsCXO0VKBfhubmtgvJi3XgU");'>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Reports – CivicReport</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>:root{--primary-color:#137fec;}body{font-family:Inter,"Noto Sans",sans-serif;}</style>
+</head>
+<body class="bg-gray-50">
+<header class="flex justify-between items-center p-5 bg-white shadow">
+  <h1 class="text-2xl font-bold text-teal-700">CivicReport</h1>
+  <a href="report.html" class="text-[var(--primary-color)] underline">+ New Report</a>
+</header>
+
+<main class="max-w-4xl mx-auto p-8">
+  <h2 class="text-3xl font-bold text-gray-900 mb-6">My Reports</h2>
+  <div id="myReports" class="grid gap-6"></div>
+</main>
+
+<script>
+const container = document.getElementById('myReports');
+const currentUser = "abiioff565@gmail.com"; // Replace with logged-in user variable
+const allReports = JSON.parse(localStorage.getItem('reports') || '[]');
+const myReports = allReports.filter(r => r.userEmail === currentUser);
+
+if(!myReports.length){
+  container.innerHTML = "<p class='text-gray-600'>No reports submitted yet.</p>";
+}
+else{
+  myReports.forEach(r => {
+    const card = document.createElement('div');
+    card.className = "rounded-lg border border-gray-200 bg-white p-6 shadow";
+    card.innerHTML = `
+      <h3 class="text-xl font-semibold text-gray-800 mb-1">${r.title}</h3>
+      <p class="text-sm text-gray-500 mb-2">${r.date}</p>
+      <p class="text-gray-700 mb-2">${r.description}</p>
+      <p class="text-gray-600"><strong>Category:</strong> ${r.category}</p>
+      <p class="text-gray-600"><strong>Location:</strong> ${r.location}</p>
+      <p class="text-gray-600"><strong>Status:</strong> ${r.status}</p>
+    `;
+    container.appendChild(card);
+  });
+}
+</script>
+</body>
+</html>

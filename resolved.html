@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resolved Reports</title>
+  <link rel="stylesheet" href="userdashboard.css">
+</head>
+<body>
+  <header class="top-bar">
+    <h1 class="app-title">CivicReport</h1>
+    <a href="userdashboard.html" style="color:#2e7d6b; text-decoration:none;">&larr; Back</a>
+  </header>
+  <section class="analytics-heading">
+    <h2>Resolved Reports in Your Community</h2>
+  </section>
+  <section class="reports-list" id="reportsListSection" style="padding:20px;">
+    <!-- Resolved reports will be loaded here -->
+  </section>
+  <script src="script.js"></script>
+  <script>
+    function renderResolvedReports() {
+      const section = document.getElementById('reportsListSection');
+      const resolvedReports = (window.reports || []).filter(r => r.status === 'resolved');
+      if (!resolvedReports.length) {
+        section.innerHTML = '<p>No resolved reports found.</p>';
+        return;
+      }
+      section.innerHTML = resolvedReports.map(r => `
+        <div class="status-card" style="margin-bottom:15px; text-align:left;">
+          <h3>${r.title} <span style="float:right;font-size:1rem;color:#27ae60;">${r.status.toUpperCase()}</span></h3>
+          <p><strong>ID:</strong> ${r.id}</p>
+          <p><strong>Description:</strong> ${r.description}</p>
+          <p><strong>Community:</strong> ${r.community}</p>
+        </div>
+      `).join('');
+    }
+    document.addEventListener('DOMContentLoaded', renderResolvedReports);
+  </script>
+</body>
+</html>

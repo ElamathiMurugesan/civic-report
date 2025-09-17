@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile – CivicReport</title>
+  <link rel="stylesheet" href="userdashboard.css">
+  <style>
+    .profile-container {
+      max-width: 480px;
+      margin: 48px auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(44,62,80,0.09);
+      padding: 36px 32px 32px 32px;
+      text-align: center;
+    }
+    .profile-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #2e7d6b;
+      color: #fff;
+      font-size: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px auto;
+      font-weight: 700;
+    }
+    .profile-details {
+      margin-top: 18px;
+      text-align: left;
+    }
+    .profile-details label {
+      color: #888;
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 2px;
+      display: block;
+    }
+    .profile-details p {
+      color: #2e3a59;
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-container">
+    <div class="profile-avatar" id="profileAvatar">A</div>
+    <h2 id="profileName">Abinaya i</h2>
+    <div class="profile-details">
+      <label>Email</label>
+      <p id="profileEmail">abiioff565@gmail.com</p>
+      <label>Points</label>
+      <p id="profilePoints">0</p>
+    </div>
+  </div>
+  <script src="script.js"></script>
+  <script>
+    // Fetch user details (replace with dynamic logic if needed)
+    const user = {
+      name: 'Abinaya i',
+      email: 'abiioff565@gmail.com',
+      points: (typeof getUserPoints === 'function') ? getUserPoints('abiioff565@gmail.com') : 0
+    };
+    document.getElementById('profileAvatar').textContent = user.name.charAt(0).toUpperCase();
+    document.getElementById('profileName').textContent = user.name;
+    document.getElementById('profileEmail').textContent = user.email;
+    document.getElementById('profilePoints').textContent = user.points + ' points';
+  </script>
+</body>
+</html>

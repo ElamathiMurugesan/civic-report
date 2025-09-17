@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Anonymous Report</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      background: #0f172a; /* dark background */
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    header {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #22c55e;
+    }
+
+    p.subtext {
+      color: #9ca3af;
+      margin-bottom: 30px;
+    }
+
+    /* Card-like form */
+    form {
+      background: #1e293b;
+      padding: 30px;
+      border-radius: 12px;
+      width: 75%;
+      max-width: 900px;
+      box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Section Title */
+    .form-section {
+      font-size: x-large;
+      font-weight: 600;
+      font-size: x-large;
+      margin-bottom: 5px;
+      color: #f1f5f9;
+    }
+
+    .form-subtext {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      font-size: larger;
+      margin-bottom: 15px;
+    }
+
+    /* Labels */
+    label {
+      font-weight: 500;
+      font-size: x-large;
+      color: #cbd5e1;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    /* Inputs, textarea, select */
+    form input,
+    form textarea,
+    form select {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      outline: none;
+      font-size: large;
+      background: #273449;
+      color: #f1f5f9;
+      transition: 0.3s ease;
+    }
+
+    form input:focus,
+    form textarea:focus,
+    form select:focus {
+      border-color: #22c55e;
+      background: #334155;
+    }
+
+    textarea {
+      resize: none;
+      min-height: 120px;
+    }
+
+    input[type="file"] {
+      background: #273449;
+      cursor: pointer;
+    }
+
+    /* Button */
+    form button {
+      background: #22c55e;
+      border: none;
+      padding: 16px;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    form button:hover {
+      background: #16a34a;
+    }
+  </style>
+</head>
+<body>
+  <header>Report an Issue</header>
+  <p class="subtext">Help improve your community by reporting civic issues</p>
+
+
+  <form id="anonForm">
+    <div class="form-section">Issue Details</div>
+    <div class="form-subtext">Provide as much detail as possible to help authorities address the issue</div>
+
+    <label for="title">Title *</label>
+    <input type="text" id="title" placeholder="Brief title for the issue" required>
+
+    <label for="category">Category *</label>
+    <select id="category" required>
+      <option value="">Select a category</option>
+      <option value="Road">Road</option>
+      <option value="Garbage">Garbage</option>
+      <option value="Water">Water</option>
+      <option value="Street Light">Street Light</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <label for="desc">Description *</label>
+    <textarea id="desc" placeholder="Describe the issue in detail..." required></textarea>
+
+    <label for="location">Location *</label>
+    <input type="text" id="location" placeholder="Enter location or coordinates" required>
+
+    <label for="photo">Upload a Photo</label>
+    <input type="file" id="photo" accept="image/*" capture="camera">
+
+    <button type="submit">Submit Anonymously</button>
+  </form>
+
+  <script src="script.js"></script>
+  <script>
+     document.getElementById("anonForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // prevent default form submission
+
+      // Save report to localStorage
+      const report = {
+        id: Date.now(),
+        title: document.getElementById('title').value,
+        category: document.getElementById('category').value,
+        description: document.getElementById('desc').value,
+        location: document.getElementById('location').value,
+        date: new Date().toLocaleString(),
+        status: 'pending',
+        userEmail: 'anonymous@civic.com'
+      };
+      const reports = JSON.parse(localStorage.getItem('reports') || '[]');
+      reports.push(report);
+      localStorage.setItem('reports', JSON.stringify(reports));
+      if (typeof awardPointsOnReport === 'function') {
+        awardPointsOnReport(report.userEmail);
+      }
+      // Redirect to dashboard page
+      window.location.href = "admindashboard.html";
+    });
+  </script>
+</body>
+</html>
